@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">MobWebHF</string>
+    <string name="cafeteria">cafeteria</string>
+    <string name="vault">Vault</string>
+    <string name="pieChart">Analitics</string>
+    <string name="budget">Budget</string>
+    <string name="name">name</string>
+    <string name="email">email</string>
+    <string name="address">address</string>
+    <string name="tax_id">taxid</string>
+    <string name="registration_id">regid</string>
+    <string name="social_security_id">socsecid</string>
 </resources>

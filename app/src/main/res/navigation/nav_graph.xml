@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/menuFragment">
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="hu.bme.aut.android.mobwebhf.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_budgetFragment"
+            app:destination="@id/budgetFragment" />
+        <!-->
+        <action
+            android:id="@+id/action_menuFragment_to_analyticsFragment"
+            app:destination="@id/analiticsFragment" />
+    <!-->
+    </fragment>
+
+    <fragment
+        android:id="@+id/budgetFragment"
+        android:name="hu.bme.aut.android.mobwebhf.Budget.BudgetFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_budget" />
+    <!-->
+    <fragment
+        android:id="@+id/analiticsFragment"
+        android:name="hu.bme.aut.android.mobwebhf."
+        android:label="fragment_holiday"
+        tools:layout="@layout/fragment_holiday" >
+        <action
+            android:id="@+id/action_holidayFragment_to_datePickerDialogFragment"
+            app:destination="@id/datePickerDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/datePickerDialogFragment"
+        android:name="hu.bme.aut.android.mobwebhf.DatePickerDialogFragment"
+        android:label="DatePickerDialogFragment" />
+<!-->
+</navigation>
