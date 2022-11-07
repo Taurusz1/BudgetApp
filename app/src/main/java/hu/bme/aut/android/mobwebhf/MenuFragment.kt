@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import hu.bme.aut.android.mobwebhf.databinding.FragmentMenuBinding
 
-
 class MenuFragment : Fragment() {
     private lateinit var binding : FragmentMenuBinding
     override fun onCreateView(

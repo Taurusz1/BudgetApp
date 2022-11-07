@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hu.bme.aut.android.mobwebhf.Budget.BudgetFragment">
+    tools:context=".MainActivity">
+    <!-->"hu.bme.aut.android.mobwebhf.Budget.BudgetFragment"> <!-->
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vpProfile"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+<androidx.viewpager2.widget.ViewPager2
+    android:id="@+id/vpProfile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
 </LinearLayout>

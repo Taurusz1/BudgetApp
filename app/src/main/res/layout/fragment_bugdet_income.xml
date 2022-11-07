@@ -8,12 +8,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ID:"
+        android:text="@string/type"
         android:textAllCaps="true"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/tvId"
+        android:id="@+id/tvType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -23,12 +23,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/social_security_id"
+        android:text="@string/name"
         android:textAllCaps="true"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/tvSSN"
+        android:id="@+id/tvName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -38,12 +38,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tax_id"
+        android:text="@string/price"
         android:textAllCaps="true"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/tvTaxId"
+        android:id="@+id/tvPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -53,16 +53,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/registration_id"
+        android:text="@string/timeOfIncome"
         android:textAllCaps="true"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/tvRegistrationId"
+        android:id="@+id/tvTimeOfIncome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:textColor="#000000"
         android:textSize="34sp" />
+
 
 </LinearLayout>

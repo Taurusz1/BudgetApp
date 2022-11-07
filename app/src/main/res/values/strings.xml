@@ -4,10 +4,11 @@
     <string name="vault">Vault</string>
     <string name="pieChart">Analitics</string>
     <string name="budget">Budget</string>
-    <string name="name">name</string>
-    <string name="email">email</string>
-    <string name="address">address</string>
-    <string name="tax_id">taxid</string>
-    <string name="registration_id">regid</string>
-    <string name="social_security_id">socsecid</string>
+    <string name="name">Name</string>
+    <string name="price">Price</string>
+    <string name="category">Category</string>
+    <string name="timeOfPurchase">Time Of Purchase</string>
+    <string name="timeOfIncome">Time Of Income</string>
+    <string name="type">Type</string>
+
 </resources>
