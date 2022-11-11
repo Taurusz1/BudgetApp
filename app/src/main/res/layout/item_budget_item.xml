@@ -4,18 +4,46 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingBottom="8dp"
+    android:paddingBottom="4dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:paddingTop="8dp"
-    android:weightSum="10">
+    android:paddingTop="4dp"
+    android:weightSum="100">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="16dp"
-        android:layout_weight="8"
+        android:layout_marginStart="10dp"
+        android:layout_weight="17"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:text="@string/name" />
+        <TextView
+            android:id="@+id/priceText"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:text="@string/price" />
+        <TextView
+            android:id="@+id/catText"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:text="@string/category" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="10dp"
+        android:layout_weight="60"
         android:orientation="vertical">
 
     <TextView
@@ -23,26 +51,26 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
-        tools:text="Név" />
+        tools:text="Name" />
     <TextView
         android:id="@+id/tvPrice"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
-        tools:text="Ár" />
+        tools:text="Price" />
     <TextView
         android:id="@+id/tvCat"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
-        tools:text="Kategória" />
+        tools:text="Category" />
     </LinearLayout>
 
     <ImageButton
         android:id="@+id/budget_item_remove_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
+        android:layout_weight="20"
         android:src="@drawable/ic_delete" />
 
 </LinearLayout>

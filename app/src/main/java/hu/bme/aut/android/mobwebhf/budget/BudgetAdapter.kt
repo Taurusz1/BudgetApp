@@ -28,6 +28,9 @@ class BudgetAdapter(private val listener: OnBudgetItemSelectedListener) : Recycl
 
     override fun getItemCount(): Int = items.size
 
+    fun getItems(): MutableList<BudgetItem>{
+        return items
+    }
     fun addBudgetItem(newItem: BudgetItem) {
         items.add(newItem)
         notifyItemInserted(items.size - 1)
@@ -42,20 +45,24 @@ class BudgetAdapter(private val listener: OnBudgetItemSelectedListener) : Recycl
     }
 
     inner class BudgetItemViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var binding = ItemBudgetItemBinding.bind(itemView)
-        var item: BudgetItem? = null
+        private var binding = ItemBudgetItemBinding.bind(itemView)
+        private var item: BudgetItem? = null
 
         init {
             binding.root.setOnClickListener { listener.onBudgetItemSelected(item) }
-
             binding.budgetItemRemoveButton.setOnClickListener{
                 removeBudgetItem(items.indexOf(item))
             }
         }
 
-        fun bind(newItem: BudgetItem?) {
+        fun bind(newItem: BudgetItem) {
             item = newItem
-            binding.tvName.text = item.toString()
+            binding.nameText.text = "Name:"
+            binding.priceText.text = "Price:"
+            binding.catText.text = "Category:"
+            binding.tvName.text = newItem.Name
+            binding.tvPrice.text = newItem.Price.toString()
+            binding.tvCat.text = newItem.cat.toString()
         }
     }
 }

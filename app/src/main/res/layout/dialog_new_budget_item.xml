@@ -16,12 +16,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/new_item_price_hint"
-        android:inputType="numberDecimal" />
+        android:inputType="number|numberDecimal" />
     <EditText
-        android:id="@+id/etNewBudgetItemCategory"
+        android:id="@+id/etCat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/new_item_category_hint"
-        android:inputType="textAutoComplete" />
+        android:hint="@string/category"
+        android:inputType="textAutoCorrect" />
+
 
 </LinearLayout>

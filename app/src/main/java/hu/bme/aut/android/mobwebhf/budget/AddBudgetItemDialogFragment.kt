@@ -4,6 +4,8 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
 import hu.bme.aut.android.mobwebhf.Data.BudgetItem
@@ -35,19 +37,18 @@ class AddBudgetItemDialogFragment : AppCompatDialogFragment() {
             .setPositiveButton(R.string.ok) { _, _ ->
                 run {
                     var cat = BudgetItem.Category.OTHER
-                    when (binding.etNewBudgetItemCategory.text.toString()) {
-                        "food" -> cat = BudgetItem.Category.FOOD
-                        "hobby" -> cat = BudgetItem.Category.HOBBY
-                        "sports" -> cat = BudgetItem.Category.SPORTS
-                        "clothes" -> cat = BudgetItem.Category.CLOTHES
-                        "entertainment" -> cat = BudgetItem.Category.ENTERTAINMENT
-                        "other" -> cat = BudgetItem.Category.OTHER
+                    when (binding.etCat.text.toString()) {
+                        "Food" -> cat = BudgetItem.Category.FOOD
+                        "Hobby" -> cat = BudgetItem.Category.HOBBY
+                        "Clothes" -> cat = BudgetItem.Category.CLOTHES
+                        "Entertainment" -> cat = BudgetItem.Category.ENTERTAINMENT
+                        "Other" -> cat = BudgetItem.Category.OTHER
                         else -> {}
                     }
                     listener.onBudgetItemAdded(
                         BudgetItem(
                             binding.etNewBudgetItemName.text.toString(),
-                            binding.etNewBudgetItemPrice.inputType,
+                            binding.etNewBudgetItemPrice.text.toString().toInt(),
                             cat
                         )
                     )

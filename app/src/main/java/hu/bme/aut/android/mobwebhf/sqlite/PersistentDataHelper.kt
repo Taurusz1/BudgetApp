@@ -15,9 +15,8 @@ class PersistentDataHelper(context: Context) {
         DbConstants.BudgetItems.Columns.ID.name,
         DbConstants.BudgetItems.Columns.NAME.name,
         DbConstants.BudgetItems.Columns.PRICE.name,
-        //DbConstants.BudgetItems.Columns.PURCHASE_DATE.toString(),
-        //DbConstants.BudgetItems.Columns.CATEGORY.toString(),
-        //DbConstants.BudgetItems.Columns.TYPE.toString()
+        DbConstants.BudgetItems.Columns.CATEGORY.name,
+        DbConstants.BudgetItems.Columns.TYPE.name
     )
 
     @Throws(SQLiteException::class)
@@ -35,25 +34,36 @@ class PersistentDataHelper(context: Context) {
             val values = ContentValues()
             values.put(DbConstants.BudgetItems.Columns.NAME.name, item.Name)
             values.put(DbConstants.BudgetItems.Columns.PRICE.name, item.Price)
-            //values.put(DbConstants.BudgetItems.Columns.PURCHASE_DATE.name, item.timeOfPurchase.toString())
-            //values.put(DbConstants.BudgetItems.Columns.CATEGORY.name, item.cat.toString())
-            //values.put(DbConstants.BudgetItems.Columns.TYPE.name, item.type.toString())
+            values.put(DbConstants.BudgetItems.Columns.CATEGORY.name, item.cat.name)
+            values.put(DbConstants.BudgetItems.Columns.TYPE.name, item.type.name)
             database!!.insert(DbConstants.BudgetItems.DATABASE_TABLE, null, values)
         }
     }
 
-    fun restoreBudgetItems(): MutableList<BudgetItem> {
-        val points: MutableList<BudgetItem> = ArrayList()
-        val cursor: Cursor =
-            database!!.query(DbConstants.BudgetItems.DATABASE_TABLE, BudgetItemsColumns, null, null, null, null, null)
+    fun restoreIncomeItems(): MutableList<BudgetItem> {
+        val items: MutableList<BudgetItem> = ArrayList()
+        val cursor: Cursor = database!!.query(DbConstants.BudgetItems.DATABASE_TABLE, BudgetItemsColumns,null , null, null, null, null)
         cursor.moveToFirst()
         while (!cursor.isAfterLast) {
             val item: BudgetItem = cursorToPoint(cursor)
-            points.add(item)
+            items.add(item)
             cursor.moveToNext()
         }
         cursor.close()
-        return points
+        return items
+    }
+
+    fun restoreExpenseItems(): MutableList<BudgetItem> {
+        val items: MutableList<BudgetItem> = ArrayList()
+        val cursor: Cursor = database!!.query(DbConstants.BudgetItems.DATABASE_TABLE, BudgetItemsColumns, null, null, null, null, null)
+        cursor.moveToFirst()
+        while (!cursor.isAfterLast) {
+            val item: BudgetItem = cursorToPoint(cursor)
+            items.add(item)
+            cursor.moveToNext()
+        }
+        cursor.close()
+        return items
     }
 
     fun clearBudgetItems() {
@@ -64,6 +74,8 @@ class PersistentDataHelper(context: Context) {
         val item = BudgetItem()
         item.Name = cursor.getString(DbConstants.BudgetItems.Columns.NAME.ordinal)
         item.Price = cursor.getInt(DbConstants.BudgetItems.Columns.PRICE.ordinal)
+        //item.cat = cursor.getString(DbConstants.BudgetItems.Columns.CATEGORY.ordinal)
+        //item.type = cursor.getString(DbConstants.BudgetItems.Columns.TYPE.ordinal)
         return item
     }
 }
