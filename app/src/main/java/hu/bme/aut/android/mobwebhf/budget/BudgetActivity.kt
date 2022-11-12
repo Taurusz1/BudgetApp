@@ -28,14 +28,17 @@ class BudgetActivity : AppCompatActivity(), BudgetAdapter.OnBudgetItemSelectedLi
         super.onCreate(savedInstanceState)
         binding = ActivityBudgetBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        initFab()
+        initRecyclerView()
+
         dataHelper = PersistentDataHelper(this)
         dataHelper.open()
         val type = this.intent.getIntExtra(KEY_TRANSPORT_TYPE, -1)
         typeString = getTypeString(type)
         restorePersistedItems()
 
-        initFab()
-        initRecyclerView()
+
     }
     override fun onResume() {
         super.onResume()
@@ -92,14 +95,13 @@ class BudgetActivity : AppCompatActivity(), BudgetAdapter.OnBudgetItemSelectedLi
     private fun initRecyclerView() {
         binding.budgetRecyclerView.layoutManager = LinearLayoutManager(binding.root.context)
         adapter = BudgetAdapter(this)
-        adapter.addBudgetItem(BudgetItem("fasz1",2))
         binding.budgetRecyclerView.adapter = adapter
     }
 
     override fun onBudgetItemSelected(item: BudgetItem?) {
         //val showDetailsIntent = Intent()
         //showDetailsIntent.setClass(this@BudgetActivity, AddBudgetItemDialogFragment::class.java)
-        //%showDetailsIntent.putExtra(DetailsActivity.EXTRA_CITY_NAME, city)
+        //showDetailsIntent.putExtra(DetailsActivity.EXTRA_CITY_NAME, city)
         //startActivity(showDetailsIntent)
     }
 

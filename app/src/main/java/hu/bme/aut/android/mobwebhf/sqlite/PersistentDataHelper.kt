@@ -15,8 +15,8 @@ class PersistentDataHelper(context: Context) {
         DbConstants.BudgetItems.Columns.ID.name,
         DbConstants.BudgetItems.Columns.NAME.name,
         DbConstants.BudgetItems.Columns.PRICE.name,
-        DbConstants.BudgetItems.Columns.CATEGORY.name,
-        DbConstants.BudgetItems.Columns.TYPE.name
+        //DbConstants.BudgetItems.Columns.CATEGORY.name,
+        //DbConstants.BudgetItems.Columns.TYPE.name
     )
 
     @Throws(SQLiteException::class)
@@ -34,8 +34,8 @@ class PersistentDataHelper(context: Context) {
             val values = ContentValues()
             values.put(DbConstants.BudgetItems.Columns.NAME.name, item.Name)
             values.put(DbConstants.BudgetItems.Columns.PRICE.name, item.Price)
-            values.put(DbConstants.BudgetItems.Columns.CATEGORY.name, item.cat.name)
-            values.put(DbConstants.BudgetItems.Columns.TYPE.name, item.type.name)
+            //values.put(DbConstants.BudgetItems.Columns.CATEGORY.name, item.cat.name)
+            //values.put(DbConstants.BudgetItems.Columns.TYPE.name, item.type.name)
             database!!.insert(DbConstants.BudgetItems.DATABASE_TABLE, null, values)
         }
     }

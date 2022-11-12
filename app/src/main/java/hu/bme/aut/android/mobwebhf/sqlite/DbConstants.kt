@@ -11,14 +11,12 @@ object DbConstants {
     object BudgetItems {
         const val DATABASE_TABLE = "BudgetItems"
 
-        enum class Columns { ID, NAME, PRICE, CATEGORY, TYPE }
+        enum class Columns { ID, NAME, PRICE}
 
         private val DATABASE_CREATE = """create table if not exists $DATABASE_TABLE (
             ${Columns.ID.name} integer primary key autoincrement,
             ${Columns.NAME.name} string not null,
             ${Columns.PRICE.name} integer not null
-            ${Columns.CATEGORY.name} string not null
-            ${Columns.TYPE.name} string not null
             );"""
 
         private const val DATABASE_DROP = "drop table if exists $DATABASE_TABLE;"
