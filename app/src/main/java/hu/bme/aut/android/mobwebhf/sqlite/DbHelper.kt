@@ -8,7 +8,8 @@ class DbHelper(context: Context) :
     SQLiteOpenHelper(context, DbConstants.DATABASE_NAME, null, DbConstants.DATABASE_VERSION) {
 
     override fun onCreate(sqLiteDatabase: SQLiteDatabase) {
-        DbConstants.BudgetItems.onCreate(sqLiteDatabase)
+        DbConstants.ExpenseItems.onCreate(sqLiteDatabase)
+        DbConstants.IncomeItems.onCreate(sqLiteDatabase)
     }
 
     override fun onUpgrade(
@@ -16,6 +17,7 @@ class DbHelper(context: Context) :
         oldVersion: Int,
         newVersion: Int
     ) {
-        DbConstants.BudgetItems.onUpgrade(sqLiteDatabase, oldVersion, newVersion)
+        DbConstants.ExpenseItems.onUpgrade(sqLiteDatabase, oldVersion, newVersion)
+        DbConstants.IncomeItems.onUpgrade(sqLiteDatabase, oldVersion, newVersion)
     }
 }

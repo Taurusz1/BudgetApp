@@ -12,15 +12,15 @@ class BudgetActivity : AppCompatActivity(), BudgetAdapter.OnBudgetItemSelectedLi
     private lateinit var binding: ActivityBudgetBinding
     private lateinit var adapter: BudgetAdapter
     private lateinit var dataHelper: PersistentDataHelper
-    private lateinit var typeString: String
+    private lateinit var dbName: String
     companion object {
         const val KEY_TRANSPORT_TYPE = "KEY_TRANSPORT_TYPE"
     }
-    private fun getTypeString(type: Int): String {
-        return when (type) {
-            MainActivity.TYPE_INCOME -> "Income"
-            MainActivity.TYPE_EXPENSE -> "Expense"
-            else -> "Unknown pass type"
+    private fun getTypeString(type: Int) {
+        dbName = when (type) {
+            MainActivity.TYPE_INCOME -> "IncomeItems"
+            MainActivity.TYPE_EXPENSE -> "ExpenseItems"
+            else -> "ExpenseItems"
         }
     }
 
@@ -34,10 +34,8 @@ class BudgetActivity : AppCompatActivity(), BudgetAdapter.OnBudgetItemSelectedLi
 
         dataHelper = PersistentDataHelper(this)
         dataHelper.open()
-        val type = this.intent.getIntExtra(KEY_TRANSPORT_TYPE, -1)
-        typeString = getTypeString(type)
-        restorePersistedItems()
-
+        getTypeString(this.intent.getIntExtra(KEY_TRANSPORT_TYPE, -1))
+        restorePersistedItems(dbName)
 
     }
     override fun onResume() {
@@ -55,35 +53,16 @@ class BudgetActivity : AppCompatActivity(), BudgetAdapter.OnBudgetItemSelectedLi
     }
 
     private fun onExit() {
-        when(typeString){
-            "Income" -> {
-                dataHelper.persistBudgetItems(adapter.getItems())
-            }
-            "Expense" -> {
-                dataHelper.persistBudgetItems(adapter.getItems())
-            }
-        }
+        dataHelper.persistItems(adapter.getItems(),dbName)
         dataHelper.close()
         finish()
     }
 
-    private fun restorePersistedItems(){
-        when(typeString){
-            "Income" ->{
-                val items = dataHelper.restoreIncomeItems()
-                for(i in items){
-                    onBudgetItemAdded(i)
-                }
-            }
-            "Expense" ->{
-                val items= dataHelper.restoreExpenseItems()
-                for(i in items){
-                    onBudgetItemAdded(i)
-                }
-            }
-            else ->{}
+    private fun restorePersistedItems(dbName: String){
+        val items = dataHelper.restoreItems(dbName)
+        for(i in items){
+            onBudgetItemAdded(i)
         }
-
     }
 
     private fun initFab() {
