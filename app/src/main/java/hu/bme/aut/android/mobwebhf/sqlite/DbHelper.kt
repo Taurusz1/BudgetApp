@@ -10,6 +10,7 @@ class DbHelper(context: Context) :
     override fun onCreate(sqLiteDatabase: SQLiteDatabase) {
         DbConstants.ExpenseItems.onCreate(sqLiteDatabase)
         DbConstants.IncomeItems.onCreate(sqLiteDatabase)
+        DbConstants.Savings.onCreate(sqLiteDatabase)
     }
 
     override fun onUpgrade(
@@ -19,5 +20,6 @@ class DbHelper(context: Context) :
     ) {
         DbConstants.ExpenseItems.onUpgrade(sqLiteDatabase, oldVersion, newVersion)
         DbConstants.IncomeItems.onUpgrade(sqLiteDatabase, oldVersion, newVersion)
+        DbConstants.Savings.onUpgrade(sqLiteDatabase, oldVersion, newVersion)
     }
 }

@@ -25,7 +25,8 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".budget.BudgetActivity" ></activity>
+        <activity android:name=".budget.BudgetActivity" />
+        <activity android:name=".analitics.AnalyticsActivity" />
     </application>
 
 </manifest>

@@ -43,6 +43,7 @@ class AddBudgetItemDialogFragment : AppCompatDialogFragment() {
                         "Clothes" -> cat = BudgetItem.Category.CLOTHES
                         "Entertainment" -> cat = BudgetItem.Category.ENTERTAINMENT
                         "Other" -> cat = BudgetItem.Category.OTHER
+                        "Income" -> cat = BudgetItem.Category.INCOME
                         else -> {}
                     }
                     listener.onBudgetItemAdded(

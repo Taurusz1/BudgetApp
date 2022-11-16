@@ -20,6 +20,7 @@ class BudgetActivity : AppCompatActivity(), BudgetAdapter.OnBudgetItemSelectedLi
         dbName = when (type) {
             MainActivity.TYPE_INCOME -> "IncomeItems"
             MainActivity.TYPE_EXPENSE -> "ExpenseItems"
+            MainActivity.TYPE_SAVINGS -> "Savings"
             else -> "ExpenseItems"
         }
     }
