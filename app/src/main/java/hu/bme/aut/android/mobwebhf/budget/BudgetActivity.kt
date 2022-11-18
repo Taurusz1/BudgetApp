@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import hu.bme.aut.android.mobwebhf.Data.BudgetItem
 import hu.bme.aut.android.mobwebhf.MainActivity
 import hu.bme.aut.android.mobwebhf.databinding.ActivityBudgetBinding
+import hu.bme.aut.android.mobwebhf.sqlite.DbConstants
 import hu.bme.aut.android.mobwebhf.sqlite.PersistentDataHelper
 
 class BudgetActivity : AppCompatActivity(), BudgetAdapter.OnBudgetItemSelectedListener, AddBudgetItemDialogFragment.AddBudgetItemDialogListener{
@@ -18,10 +19,10 @@ class BudgetActivity : AppCompatActivity(), BudgetAdapter.OnBudgetItemSelectedLi
     }
     private fun getTypeString(type: Int) {
         dbName = when (type) {
-            MainActivity.TYPE_INCOME -> "IncomeItems"
-            MainActivity.TYPE_EXPENSE -> "ExpenseItems"
-            MainActivity.TYPE_SAVINGS -> "Savings"
-            else -> "ExpenseItems"
+            MainActivity.TYPE_INCOME -> DbConstants.DATABASE_TABLE_INCOME
+            MainActivity.TYPE_EXPENSE -> DbConstants.DATABASE_TABLE_EXPENSE
+            MainActivity.TYPE_SAVINGS -> DbConstants.DATABASE_TABLE_SAVINGS
+            else -> DbConstants.DATABASE_TABLE_EXPENSE
         }
     }
 
@@ -37,6 +38,7 @@ class BudgetActivity : AppCompatActivity(), BudgetAdapter.OnBudgetItemSelectedLi
         dataHelper.open()
         getTypeString(this.intent.getIntExtra(KEY_TRANSPORT_TYPE, -1))
         restorePersistedItems(dbName)
+        binding.sum.text = ""
 
     }
     override fun onResume() {

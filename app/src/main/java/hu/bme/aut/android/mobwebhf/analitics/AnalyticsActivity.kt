@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.utils.ColorTemplate
 import hu.bme.aut.android.mobwebhf.Data.BudgetItem
+import hu.bme.aut.android.mobwebhf.R
 import hu.bme.aut.android.mobwebhf.databinding.ActivityAnalyticsBinding
 import hu.bme.aut.android.mobwebhf.sqlite.DbConstants
 import hu.bme.aut.android.mobwebhf.sqlite.PersistentDataHelper
@@ -43,45 +43,12 @@ class AnalyticsActivity : AppCompatActivity() {
         drawBudget()
     }
 
-    private fun caclIncome():Int{
-        var sum = 0
-        for(i in incomeItems){
-            sum+=i.Price
-        }
-        return sum
-    }
-    private fun calcExpense():ArrayList<Int>{
-        var foodSum = 0
-        var hobbySum = 0
-        var clothesSum = 0
-        var entertainmentSum = 0
-        var otherSum = 0
-        var sum = 0
-        var sumList = ArrayList<Int>()
-        for(i in expenseItems){
-            when(i.cat.name){
-                "FOOD" -> foodSum+=i.Price
-                "HOBBY" -> hobbySum+=i.Price
-                "CLOTHES" -> clothesSum+=i.Price
-                "ENTERTAINMENT" -> entertainmentSum+=i.Price
-                "OTHER"-> otherSum+=i.Price
-                else -> {}
-            }
-            sum+=i.Price
-        }
-        sumList.add(foodSum)
-        sumList.add(hobbySum)
-        sumList.add(clothesSum)
-        sumList.add(entertainmentSum)
-        sumList.add(otherSum)
-        sumList.add(sum)
-        return sumList
-    }
-
     private fun drawBudget(){
-        val sumList = calcExpense()
+        val sumList = dataHelper.calcExpense(DbConstants.DATABASE_TABLE_EXPENSE)
         var entries = listOf(
-            PieEntry(caclIncome().toFloat(), "Income"),
+            PieEntry(dataHelper.calcSums(DbConstants.DATABASE_TABLE_INCOME).toFloat(), "Income"),
+            PieEntry(dataHelper.calcSums(DbConstants.DATABASE_TABLE_EXPENSE).toFloat(), "Expense"),
+            PieEntry(dataHelper.calcSums(DbConstants.DATABASE_TABLE_SAVINGS).toFloat(), "Savings"),
             PieEntry(sumList[0].toFloat(),"Food"),
             PieEntry(sumList[1].toFloat(),"Hobby"),
             PieEntry(sumList[2].toFloat(),"Clothes"),
@@ -95,11 +62,17 @@ class AnalyticsActivity : AppCompatActivity() {
         val data = PieData(dataSet)
         binding.chartBudget.data = data
         binding.chartBudget.invalidate()
-        binding.tv1.text ="Income: "+ caclIncome().toString()
-        binding.tv2.text ="Food: "+ sumList[0].toString()
-        binding.tv3.text ="Hobby: "+ sumList[1].toString()
-        binding.tv4.text ="Clothes: "+ sumList[2].toString()
-        binding.tv5.text ="Entertainment: "+ sumList[3].toString()
-        binding.tv6.text ="Other: "+ sumList[4].toString()
+        var res = resources
+        val income = dataHelper.calcSums(DbConstants.DATABASE_TABLE_INCOME)
+        val expense = dataHelper.calcSums(DbConstants.DATABASE_TABLE_EXPENSE)
+        val savings = dataHelper.calcSums(DbConstants.DATABASE_TABLE_SAVINGS)
+        binding.tv1.text = res.getString(R.string.incomeValue, income)
+        binding.tv2.text = res.getString(R.string.expenseValue, expense)
+        binding.tv3.text = res.getString(R.string.savingsValue, savings)
+        binding.tv4.text = res.getString(R.string.food, sumList[0])
+        binding.tv5.text = res.getString(R.string.hobby, sumList[1])
+        binding.tv6.text = res.getString(R.string.clothes, sumList[2])
+        binding.tv7.text = res.getString(R.string.entertainment, sumList[3])
+        binding.tv8.text = res.getString(R.string.other, sumList[4])
     }
 }

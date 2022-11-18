@@ -5,5 +5,5 @@ data class BudgetItem(
     var Price: Int = 0,
     var cat: Category = Category.OTHER,
 ) {
-    enum class Category{ FOOD, HOBBY, CLOTHES, ENTERTAINMENT, OTHER, INCOME}
+    enum class Category{ FOOD, HOBBY, CLOTHES, ENTERTAINMENT, OTHER, INCOME, SAVINGS}
 }

@@ -6,11 +6,14 @@ import android.util.Log
 object DbConstants {
 
     const val DATABASE_NAME = "BudgetItems.db"
-    const val DATABASE_VERSION = 8
+    const val DATABASE_VERSION = 9
+    const val DATABASE_TABLE_EXPENSE ="ExpenseItems"
+    const val DATABASE_TABLE_INCOME ="IncomeItems"
+    const val DATABASE_TABLE_SAVINGS ="SavingsItems"
     enum class Columns { ID, NAME, PRICE, CATEGORY; }
 
     object ExpenseItems {
-        const val DATABASE_TABLE = "ExpenseItems"
+        const val DATABASE_TABLE = DATABASE_TABLE_EXPENSE
 
         private val DATABASE_CREATE = """create table if not exists $DATABASE_TABLE (
             ${Columns.ID.name} integer primary key autoincrement,
@@ -36,7 +39,7 @@ object DbConstants {
     }
 
     object IncomeItems {
-        const val DATABASE_TABLE = "IncomeItems"
+        const val DATABASE_TABLE = DATABASE_TABLE_INCOME
 
         private val DATABASE_CREATE = """create table if not exists $DATABASE_TABLE (
             ${Columns.ID.name} integer primary key autoincrement,
@@ -62,7 +65,7 @@ object DbConstants {
     }
 
     object Savings {
-        const val DATABASE_TABLE = "Savings"
+        const val DATABASE_TABLE = DATABASE_TABLE_SAVINGS
 
         private val DATABASE_CREATE = """create table if not exists $DATABASE_TABLE (
             ${Columns.ID.name} integer primary key autoincrement,

@@ -26,7 +26,39 @@ class PersistentDataHelper(context: Context) {
     fun close() {
         dbHelper.close()
     }
-
+    fun calcSums(dbName: String):Int{
+        val items = restoreItems(dbName)
+        var sum = 0
+        for(i in items){
+            sum+=i.Price
+        }
+        return sum
+    }
+    fun calcExpense(dbName: String):ArrayList<Int>{
+        val items = restoreItems(dbName)
+        var foodSum = 0
+        var hobbySum = 0
+        var clothesSum = 0
+        var entertainmentSum = 0
+        var otherSum = 0
+        var sumList = ArrayList<Int>()
+        for(i in items){
+            when(i.cat.name){
+                "FOOD" -> foodSum+=i.Price
+                "HOBBY" -> hobbySum+=i.Price
+                "CLOTHES" -> clothesSum+=i.Price
+                "ENTERTAINMENT" -> entertainmentSum+=i.Price
+                "OTHER"-> otherSum+=i.Price
+                else -> {}
+            }
+        }
+        sumList.add(foodSum)
+        sumList.add(hobbySum)
+        sumList.add(clothesSum)
+        sumList.add(entertainmentSum)
+        sumList.add(otherSum)
+        return sumList
+    }
     fun persistItems(BudgetItems: List<BudgetItem>, dbName: String) {
         clearBudgetItems(dbName)
         for (item in BudgetItems) {
