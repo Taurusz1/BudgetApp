@@ -21,14 +21,15 @@
     <string name="new_item_price_hint">Price</string>
     <string name="new_item_category_hint">Category</string>
 
-    <string name="incomeValue">Income: %1$d</string>
-    <string name="expenseValue">Expense: %1$d</string>
-    <string name="savingsValue">Savings: %1$d</string>
-    <string name="food">Food: %1$d</string>
-    <string name="hobby">Hobby: %1$d</string>
-    <string name="clothes">Clothes: %1$d</string>
-    <string name="entertainment">Entertainment: %1$d</string>
-    <string name="other">Other: %1$d</string>
+    <string name="incomeValue">Income: %1$dFt</string>
+    <string name="expenseValue">Expense: %1$dFt</string>
+    <string name="savingsValue">Savings: %1$dFt</string>
+    <string name="food">Food: %1$dFt</string>
+    <string name="hobby">Hobby: %1$dFt</string>
+    <string name="clothes">Clothes: %1$dFt</string>
+    <string name="entertainment">Entertainment: %1$dFt</string>
+    <string name="other">Other: %1$dFt</string>
+    <string name="total">Total: %1$dFt</string>
 
     <string-array name="Categories">
         <item>Food</item>

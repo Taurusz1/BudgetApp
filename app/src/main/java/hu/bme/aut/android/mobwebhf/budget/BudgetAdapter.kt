@@ -6,11 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.android.mobwebhf.Data.BudgetItem
 import hu.bme.aut.android.mobwebhf.R
+import hu.bme.aut.android.mobwebhf.databinding.ActivityBudgetBinding
 import hu.bme.aut.android.mobwebhf.databinding.ItemBudgetItemBinding
 
 
 class BudgetAdapter(private val listener: OnBudgetItemSelectedListener) : RecyclerView.Adapter<BudgetAdapter.BudgetItemViewHolder>() {
     private val items: MutableList<BudgetItem> = ArrayList()
+    var total = 0
 
     interface OnBudgetItemSelectedListener {
         fun onBudgetItemSelected(item: BudgetItem?)
@@ -37,6 +39,7 @@ class BudgetAdapter(private val listener: OnBudgetItemSelectedListener) : Recycl
     }
 
     fun removeBudgetItem(position: Int) {
+        total-= items[position].Price
         items.removeAt(position)
         notifyItemRemoved(position)
         if (position < items.size) {

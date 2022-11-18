@@ -24,12 +24,14 @@ class AnalyticsActivity : AppCompatActivity() {
     inner class ChartColors{
         val COLORS = intArrayOf(
             Color.rgb(46, 204, 113),
-
             Color.rgb(241, 196, 15),
             Color.rgb(255, 208, 140),
             Color.rgb(231, 76, 60),
             Color.rgb(52, 152, 219),
-            Color.rgb(128,0,128)
+            Color.rgb(128,0,128),
+
+            Color.rgb(3, 248, 252),
+            Color.rgb(252, 3, 206),
         )
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,10 +47,13 @@ class AnalyticsActivity : AppCompatActivity() {
 
     private fun drawBudget(){
         val sumList = dataHelper.calcExpense(DbConstants.DATABASE_TABLE_EXPENSE)
+        val income = dataHelper.calcSums(DbConstants.DATABASE_TABLE_INCOME)
+        val expense = dataHelper.calcSums(DbConstants.DATABASE_TABLE_EXPENSE)
+        val savings = dataHelper.calcSums(DbConstants.DATABASE_TABLE_SAVINGS)
         var entries = listOf(
-            PieEntry(dataHelper.calcSums(DbConstants.DATABASE_TABLE_INCOME).toFloat(), "Income"),
-            PieEntry(dataHelper.calcSums(DbConstants.DATABASE_TABLE_EXPENSE).toFloat(), "Expense"),
-            PieEntry(dataHelper.calcSums(DbConstants.DATABASE_TABLE_SAVINGS).toFloat(), "Savings"),
+            PieEntry(income.toFloat(), "Income"),
+            PieEntry(expense.toFloat(), "Expense"),
+            PieEntry(savings.toFloat(), "Savings"),
             PieEntry(sumList[0].toFloat(),"Food"),
             PieEntry(sumList[1].toFloat(),"Hobby"),
             PieEntry(sumList[2].toFloat(),"Clothes"),
@@ -58,14 +63,11 @@ class AnalyticsActivity : AppCompatActivity() {
 
         val dataSet = PieDataSet(entries, "")
         dataSet.colors = ChartColors().COLORS.toList()
-
         val data = PieData(dataSet)
         binding.chartBudget.data = data
         binding.chartBudget.invalidate()
+
         var res = resources
-        val income = dataHelper.calcSums(DbConstants.DATABASE_TABLE_INCOME)
-        val expense = dataHelper.calcSums(DbConstants.DATABASE_TABLE_EXPENSE)
-        val savings = dataHelper.calcSums(DbConstants.DATABASE_TABLE_SAVINGS)
         binding.tv1.text = res.getString(R.string.incomeValue, income)
         binding.tv2.text = res.getString(R.string.expenseValue, expense)
         binding.tv3.text = res.getString(R.string.savingsValue, savings)

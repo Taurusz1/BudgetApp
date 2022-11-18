@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import hu.bme.aut.android.mobwebhf.Data.BudgetItem
 import hu.bme.aut.android.mobwebhf.MainActivity
+import hu.bme.aut.android.mobwebhf.R
 import hu.bme.aut.android.mobwebhf.databinding.ActivityBudgetBinding
 import hu.bme.aut.android.mobwebhf.sqlite.DbConstants
 import hu.bme.aut.android.mobwebhf.sqlite.PersistentDataHelper
@@ -38,8 +39,8 @@ class BudgetActivity : AppCompatActivity(), BudgetAdapter.OnBudgetItemSelectedLi
         dataHelper.open()
         getTypeString(this.intent.getIntExtra(KEY_TRANSPORT_TYPE, -1))
         restorePersistedItems(dbName)
-        binding.sum.text = ""
-
+        adapter.total = dataHelper.calcSums(dbName)
+        setTotal(adapter.total)
     }
     override fun onResume() {
         super.onResume()
@@ -89,5 +90,12 @@ class BudgetActivity : AppCompatActivity(), BudgetAdapter.OnBudgetItemSelectedLi
 
     override fun onBudgetItemAdded(item: BudgetItem?) {
         adapter.addBudgetItem(item!!)
+        adapter.total+=item.Price
+        setTotal(adapter.total)
+    }
+
+    fun setTotal(total: Int){
+        val res = resources
+        binding.sum.text = res.getString(R.string.total, total)
     }
 }
