@@ -9,7 +9,7 @@ import hu.bme.aut.android.mobwebhf.R
 import hu.bme.aut.android.mobwebhf.databinding.ActivityBudgetBinding
 import hu.bme.aut.android.mobwebhf.databinding.ItemBudgetItemBinding
 
-
+//test
 class BudgetAdapter(private val listener: OnBudgetItemSelectedListener) : RecyclerView.Adapter<BudgetAdapter.BudgetItemViewHolder>() {
     private val items: MutableList<BudgetItem> = ArrayList()
     var total = 0
